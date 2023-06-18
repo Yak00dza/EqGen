@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant.cs" />
+    <Compile Include="Equation.cs" />
     <Compile Include="Factor.cs" />
+    <Compile Include="Fraction.cs" />
     <Compile Include="Polynominal.cs" />
     <Compile Include="Term.cs" />
     <Compile Include="Program.cs" />

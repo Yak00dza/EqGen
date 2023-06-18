@@ -15,6 +15,16 @@ namespace EqGen
             this.symbol = symbol;
             this.power = power;
         }
+        public Variable(char symbol, Term power)
+        {
+            this.symbol = symbol;
+            this.power = new Polynominal(power);
+        }
+        public Variable(char symbol, Factor power)
+        {
+            this.symbol = symbol;
+            this.power = new Polynominal(power);
+        }
 
         public Variable(char symbol)
         {

@@ -13,6 +13,14 @@ namespace EqGen
         {
             this.terms = terms;
         }
+        public Polynominal(Term term)
+        {
+            terms.Add(term);
+        }
+        public Polynominal(Factor factor)
+        {
+            terms.Add(new Term(factor));
+        }
         public string GetAsLaTeX()
         {
             List<string> latexContainer = new List<string>();

@@ -19,6 +19,16 @@ namespace EqGen
             this.value = value;
             power = null;
         }
+        public Constant(float value, Term power)
+        {
+            this.value = value;
+            this.power = new Polynominal(power);
+        }
+        public Constant(float value, Factor power)
+        {
+            this.value = value;
+            this.power = new Polynominal(power);
+        }
 
         public override string GetAsLaTeX()
         {

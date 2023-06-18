@@ -14,13 +14,20 @@ namespace EqGen
         {
             this.factors = factors;
         }
+        public Term(Factor factor)
+        {
+            this.factors.Add(factor);
+        }
 
         public bool IsFirstFactorNegative()
         {
             return GetAsLaTeX()[0] == '-';
         }
+        public Term()
+        {
 
-        public string GetAsLaTeX()
+        }
+        public virtual string GetAsLaTeX()
         {
             List<Constant> constants = factors.OfType<Constant>().ToList();
             List<Variable> variables = factors.OfType<Variable>().ToList();
