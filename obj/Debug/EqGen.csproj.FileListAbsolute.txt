@@ -1,0 +1,7 @@
+D:\Projects\EqGen\EqGen\EqGen\bin\Debug\EqGen.exe.config
+D:\Projects\EqGen\EqGen\EqGen\bin\Debug\EqGen.exe
+D:\Projects\EqGen\EqGen\EqGen\bin\Debug\EqGen.pdb
+D:\Projects\EqGen\EqGen\EqGen\obj\Debug\EqGen.csproj.AssemblyReference.cache
+D:\Projects\EqGen\EqGen\EqGen\obj\Debug\EqGen.csproj.CoreCompileInputs.cache
+D:\Projects\EqGen\EqGen\EqGen\obj\Debug\EqGen.exe
+D:\Projects\EqGen\EqGen\EqGen\obj\Debug\EqGen.pdb
