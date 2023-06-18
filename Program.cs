@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EqGen.Math;
 
 
 namespace EqGen
@@ -8,28 +9,14 @@ namespace EqGen
     {
         static void Main(string[] args)
         {
-            Variable x = new Variable('x', new Constant(2));
+            Function f = new Function("f", new Variable('x'));
+            Function cosx = new TrigFunction("cos", new Variable('x'));
 
-            Variable y = new Variable('y');
+            Polynominal left = new Polynominal(f);
+            Polynominal right = new Polynominal(cosx);
 
-            Constant a = new Constant(9);
-            Constant b = new Constant(-4);
-            Constant c = new Constant(3.5f);
+            Equation eq = new Equation(left, right);
 
-            Term term1 = new Term(new List<Factor>() {a, b, c, x, y});
-            Term term2 = new Term(new List<Factor>() { b, y });
-            Term term3 = new Term(new List<Factor>() {x, new Constant(3)});
-
-            Polynominal poly1 = new Polynominal(new List<Term>() { term1, term2 });
-            Polynominal poly2 = new Polynominal(term3);
-            Polynominal frac = new Polynominal(new Fraction(poly2, poly1));
-
-            Equation eq = new Equation(poly1, frac);
-
-            Console.WriteLine(x.GetAsLaTeX());
-            Console.WriteLine(term1.GetAsLaTeX());
-            Console.WriteLine(term2.GetAsLaTeX());
-            Console.WriteLine(poly1.GetAsLaTeX());
             Console.WriteLine(eq.GetAsLaTeX());
             Console.ReadLine();
         }
