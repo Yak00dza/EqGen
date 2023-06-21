@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using EqGen.Math;
-
+using EqGen.Generators;
+using EqGen.Generators.Properties;
 
 namespace EqGen
 {
@@ -9,15 +9,14 @@ namespace EqGen
     {
         static void Main(string[] args)
         {
-            Function f = new Function("f", new Variable('x'));
-            Function cosx = new TrigFunction("cos", new Variable('x'));
+            ConstantGeneratorProperties properties = new ConstantGeneratorProperties(-5, 15, false);
+            ConstantGeneratorProperties propertiesFloat = new ConstantGeneratorProperties(-5, 15, true);
 
-            Polynominal left = new Polynominal(f);
-            Polynominal right = new Polynominal(cosx);
-
-            Equation eq = new Equation(left, right);
-
-            Console.WriteLine(eq.GetAsLaTeX());
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(ConstantGenerator.GenerateRandomConstant(properties).GetAsLaTeX());
+                Console.WriteLine(ConstantGenerator.GenerateRandomConstant(propertiesFloat).GetAsLaTeX());
+            }
             Console.ReadLine();
         }
     }
