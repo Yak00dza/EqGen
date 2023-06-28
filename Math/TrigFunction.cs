@@ -8,20 +8,17 @@ namespace EqGen.Math
 {
     class TrigFunction : Function
     {
-        public TrigFunction(string name, Polynominal argument) : base(name, argument)
+        public TrigFunction(string name, Expression argument) : base(name, argument)
         {
             
         }
-        public TrigFunction(string name, Term argument) : base(name, argument)
-        {
 
-        }
-        public TrigFunction(string name, Factor argument) : base(name, argument)
-        {
-
-        }
         public override string GetAsLaTeX()
         {
+            if (power != null)
+            {
+                return $"\\{name}^{{{power.GetAsLaTeX()}}}({argument.GetAsLaTeX()})";
+            }
             return $"\\{name}({argument.GetAsLaTeX()})";
         }    
     }

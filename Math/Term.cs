@@ -4,42 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EqGen
+namespace EqGen.Math
 {
-    class Term
+    class Term : Expression
     {
-        private List<Factor> factors = new List<Factor>();
+        private List<Expression> factors = new List<Expression>();
 
-        public Term(List<Factor> factors)
+        public Term(List<Expression> factors)
         {
             this.factors = factors;
         }
-        public Term(Factor factor)
-        {
-            this.factors.Add(factor);
+       
+        public override string GetAsLaTeX()
+        {   
+            return $"{ConstantsToLaTeX()}{VariablesToLaTeX()}{FractionsToLaTeX()}{FunctionsToLaTeX()}{TermsToLaTeX()}{PolynominalsToLaTeX()}";
         }
 
-        public bool IsFirstFactorNegative()
-        {
-            return GetAsLaTeX()[0] == '-';
-        }
-        public Term()
-        {
-
-        }
-        public virtual string GetAsLaTeX()
+        private string ConstantsToLaTeX()
         {
             List<Constant> constants = factors.OfType<Constant>().ToList();
-            List<Variable> variables = factors.OfType<Variable>().ToList();
-
-            string constLaTeX = ConstantsToLaTeX(constants);
-            string varLaTeX = VariablesToLaTeX(variables);
-            return constLaTeX + varLaTeX;
-
-        }
-
-        private string ConstantsToLaTeX(List<Constant> constants)
-        {
             List<string> latexContainer = new List<string>();
             for (int i = 0; i < constants.Count; i++)
             {
@@ -58,14 +41,66 @@ namespace EqGen
             return string.Join(" \\cdot ", latexContainer);
 
         }
-        private string VariablesToLaTeX(List<Variable> variables)
+        private string VariablesToLaTeX()
         {
+            List<Variable> variables = factors.OfType<Variable>().ToList();
+
             List<string> latexContainer = new List<string>();
             foreach (Variable obj in variables)
             {
                 latexContainer.Add(obj.GetAsLaTeX());
             }
             return string.Join("", latexContainer);
+        }
+
+        private string FractionsToLaTeX()
+        {
+            List<Fraction> fractions = factors.OfType<Fraction>().ToList();
+            List<string> latexContainer = new List<string>();
+
+            foreach (Fraction obj in fractions)
+            {
+                latexContainer.Add(obj.GetAsLaTeX());
+            }
+            return string.Join("", latexContainer);
+        }
+        private string FunctionsToLaTeX()
+        {
+            List<Function> functions = factors.OfType<Function>().ToList();
+            List<string> latexContainer = new List<string>();
+
+            foreach (Function obj in functions)
+            {
+                latexContainer.Add(obj.GetAsLaTeX());
+            }
+            return string.Join("", latexContainer);
+        }
+        private string TermsToLaTeX()
+        {
+            List<Term> terms = factors.OfType<Term>().ToList();
+            List<string> latexContainer = new List<string>();
+
+            foreach (Term obj in terms)
+            {
+                latexContainer.Add(obj.GetAsLaTeX());
+            }
+            return string.Join("", latexContainer);
+        }
+        private string PolynominalsToLaTeX()
+        {
+            List<Polynominal> polynominals = factors.OfType<Polynominal>().ToList();
+            List<string> latexContainer = new List<string>();
+
+            foreach (Polynominal obj in polynominals)
+            {
+                latexContainer.Add($"({obj.GetAsLaTeX()})");
+            }
+            return string.Join("", latexContainer);
+        }
+
+        public bool IsFirstFactorNegative()
+        {
+            return GetAsLaTeX()[0] == '-';
         }
 
     }

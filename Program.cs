@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EqGen.Math;
 using EqGen.Generators;
 using EqGen.Generators.Properties;
@@ -9,15 +10,30 @@ namespace EqGen
     {
         static void Main(string[] args)
         {
-            ConstantGeneratorProperties properties = new ConstantGeneratorProperties(-5, 15, false);
-            ConstantGeneratorProperties propertiesFloat = new ConstantGeneratorProperties(-5, 15, true);
+            ApplySettings();
 
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine(ConstantGenerator.GenerateRandomConstant(properties).GetAsLaTeX());
-                Console.WriteLine(ConstantGenerator.GenerateRandomConstant(propertiesFloat).GetAsLaTeX());
-            }
+            Variable x = new Variable('x', new Constant(2));
+            Constant a = new Constant(5, new Constant(3));
+
+            Variable y = new Variable('y');
+            Constant b = ConstantGenerator.GenerateRandomConstant(new ConstantGeneratorProperties(-7, -2, false));
+
+            Function f = new Function("f", x);
+            TrigFunction sin = new TrigFunction("sin", y);
+
+            Term testTerm = new Term(new List<Expression>() {new Fraction(sin, new Constant(2)), x});
+
+            Polynominal polynominal = new Polynominal(new List<Expression>() {new Variable('z'), sin, b});
+
+            Term term = new Term(new List<Expression>(){x, a, sin, y, testTerm, b, polynominal, f,});
+
+            Console.WriteLine(term.GetAsLaTeX());
             Console.ReadLine();
+        }
+
+        static void ApplySettings()
+        {
+            NumberGenerator.SetDigitsAfterComma(Properties.Settings.Default.numberOfDigitsAfterComma);
         }
     }
 }

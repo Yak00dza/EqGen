@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EqGen
+namespace EqGen.Math
 {
-    class Constant : Factor
+    class Constant : Expression
     {
+
         private float value;
-        public Constant(float value, Polynominal power)
+        public Constant(float value, Expression power)
         {
             this.value = value;
             this.power = power;
@@ -18,16 +19,6 @@ namespace EqGen
         {
             this.value = value;
             power = null;
-        }
-        public Constant(float value, Term power)
-        {
-            this.value = value;
-            this.power = new Polynominal(power);
-        }
-        public Constant(float value, Factor power)
-        {
-            this.value = value;
-            this.power = new Polynominal(power);
         }
 
         public override string GetAsLaTeX()

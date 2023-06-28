@@ -1,11 +1,11 @@
 ﻿using System;
 using EqGen.Generators.Properties;
+using EqGen.Math;
 
 namespace EqGen.Generators
 {
     static class ConstantGenerator
     {
-
         public static Constant GenerateRandomConstant(ConstantGeneratorProperties properties)
         {
             int min = properties.GetMinValue();
@@ -25,6 +25,7 @@ namespace EqGen.Generators
         {
             return new Constant(NumberGenerator.GenerateRandomInt(minValue, maxValue));
         }
+
     }
 }
 

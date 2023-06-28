@@ -6,25 +6,16 @@ using System.Threading.Tasks;
 
 namespace EqGen.Math
 {
-    class Function : Term
+    class Function : Expression
     {
-        protected string name;
-        protected Polynominal argument;
 
-        public Function(string name, Polynominal argument)
+        protected string name;
+        protected Expression argument;
+
+        public Function(string name, Expression argument)
         {
             this.name = name;
             this.argument = argument;
-        }
-        public Function(string name, Term argument)
-        {
-            this.name = name;
-            this.argument = new Polynominal(argument);
-        }
-        public Function(string name, Factor argument)
-        {
-            this.name = name;
-            this.argument = new Polynominal(argument);
         }
 
         public override string GetAsLaTeX()

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EqGen
+namespace EqGen.Math
 {
     class Equation
     {
-        private Polynominal leftSide;
-        private Polynominal rightSide;
 
-        public Equation(Polynominal left, Polynominal right)
+        private Expression leftSide;
+        private Expression rightSide;
+
+        public Equation(Expression left, Expression right)
         {
             leftSide = left;
             rightSide = right;
